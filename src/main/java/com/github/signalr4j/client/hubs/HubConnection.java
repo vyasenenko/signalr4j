@@ -205,16 +205,15 @@ public class HubConnection extends Connection {
             throw new IllegalArgumentException("hubName cannot be null");
         }
 
-        String hubNameLower = hubName.toLowerCase(Locale.getDefault());
 
-        log("Creating hub proxy: " + hubNameLower, LogLevel.Information);
+        log("Creating hub proxy: " + hubName, LogLevel.Information);
 
         HubProxy proxy = null;
-        if (mHubs.containsKey(hubNameLower)) {
-            proxy = mHubs.get(hubNameLower);
+        if (mHubs.containsKey(hubName)) {
+            proxy = mHubs.get(hubName);
         } else {
             proxy = new HubProxy(this, hubName, getLogger());
-            mHubs.put(hubNameLower, proxy);
+            mHubs.put(hubName, proxy);
         }
 
         return proxy;
